@@ -1,0 +1,23 @@
+<%= render 'users/list', user: @user %>
+
+<h2>Books</h2>
+  <table>
+    <thead>
+        <tr>
+            <th>Title</th>
+        </tr>
+        <tr>
+           <th>Opinion</th>
+        </tr>
+    </thead>
+    <tbody>
+      <tr><%= image_tag @user.get_profile_image(100,100) %></tr>
+      <tr>
+        <td><% @books.each do |book| %>
+              <%= book.title %>
+              <%= book.body %>
+            <% end %>
+          </td>
+      </tr>
+    </tbody>
+  </table>
