@@ -5,20 +5,16 @@
       <tr><%= image_tag @user.get_profile_image(100,100) %></tr>
       <tr>
         <th>Title</th>
-      </tr>
-        <tr>
-          <th>Opinion</th>
+        <th>Opinion</th>
         </tr>
     </thead>
     <tbody>
       <tr>
         <td><% @books.each do |book| %>
-            <%= link_to book.title, book_path %>
+            <%= link_to book.title, book_path(book.id) %>
             <%= book.body %>
             <% end %>
         </td>
       </tr>
-
-
     </tbody>
   </table>

@@ -3,14 +3,15 @@
 <h2>Book detail</h2>
   <table>
     <tbody>
-      <tr><%= image_tag @user.get_profile_image(100,100) %></tr>
-        <tr>
-            <td><%= link_to @user, user_path %></td>
-        </tr>
-        <tr>
-            <td><%= @book.body %></td>
-        </tr>
-        <tr><%= link_to "Edit", edit_book_path(@book.id) %></tr>
-        <tr><%= link_to "destroy", books_path(@book.id), method: :delete, "data-confirm" => "本当に削除しますか？" %></tr>
+      <tr>
+        <td>
+          <%= image_tag @user.get_profile_image(100,100) %>
+            <%= link_to @user.name, user_path(@user.id) %>
+            <%=link_to @book.title,book_path(@book.id) %>
+            <%= @book.body %>
+            <%= link_to "Edit", edit_book_path(@book.id) %>
+            <%= link_to "destroy", book_path(@book.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+        </td>
+      </tr>
     </tbody>
   </table>
