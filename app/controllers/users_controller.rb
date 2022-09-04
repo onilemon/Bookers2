@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+
+  before_action :correct_user, only: [:edit, :update]
+
   def create
     @users = User.new(user_params)
     @users.user_id = current_user.id
@@ -22,12 +25,23 @@ class UsersController < ApplicationController
   end
 
   def update
-    user = User.find(params[:id])
-    user.update(user_params)
-    redirect_to user_path(user.id)
+    @user = User.find(params[:id])
+    if @user.update(user_params)
+      flash[:success] = 'You have updated user successfully.'
+      redirect_to users_url
+    else
+      render :edit
+    end
   end
+
+private
 
   def user_params
     params.require(:user).permit(:name, :image, :introduction)
+  end
+
+  def correct_user
+    @user = User.find(params[:id])
+    redirect_to user_path(current_user.id) unless @user == current_user
   end
 end
