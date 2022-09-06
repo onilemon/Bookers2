@@ -8,8 +8,10 @@
           <tbody>
             <tr>
               <td>
+                <%= link_to user_path(@user.id) do %>
                 <%= image_tag @user.get_profile_image(100,100) %><br>
-                <%= link_to @user.name, user_path(@user.id) %>
+                <%=  @user.name %>
+                <% end %>
               </td>
               <td>
                 <%=link_to @book.title,book_path(@book.id) %>
@@ -27,7 +29,7 @@
               <td>
                 <% if @book.user == current_user %>
                   <%= link_to book_path(@book.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-sm btn-danger" do %>
-                  destroy
+                  Destroy
                   <% end %>
                 <% end %>
               </td>
