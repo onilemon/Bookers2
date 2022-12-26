@@ -21,7 +21,7 @@
        <th>Title</th>
        <th>Opinion</th>
        <th></th>
-       <th colspan= "2"></th>
+       <th></th>
       </tr>
     </thead>
     <tbody>
@@ -42,6 +42,18 @@
             <%= link_to book_favorites_path(book), method: :post do %>
               ♡<%= book.favorites.count %> いいね
             <% end %>
+          <% end %>
+        </td>
+        <td>
+          コメント数: <%= @book_comments.count %>
+          <% @book.book_comment.each do |book_comment| %>
+            <%= image_tag book_comment.user.get_profile_image(100,100) %>
+            <%= book.comment.user.name %>
+            <%= book_comment.created_at.strftime("%Y/%m/%d") %><%= book_comment.comment %>
+          <% end %>
+          <%= form_with model: [@book, @book_comment] do |f| %>
+            <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
+            <%= f.submit "送信する" %>
           <% end %>
         </td>
       </tr>
