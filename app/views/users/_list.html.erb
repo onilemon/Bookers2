@@ -14,6 +14,14 @@
          <td>introduction</td>
          <td><%= user.introduction %></td>
         </tr>
+        <tr>
+          <td>follows</td>
+          <td><%= link_to user.followings.count %></td>
+        </tr>
+        <tr>
+          <td>followers</td>
+          <td><%= link_to user.followers.count %></td>
+        </tr>
       </tbody>
     </table>
 

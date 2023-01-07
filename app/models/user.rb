@@ -29,9 +29,11 @@ class User < ApplicationRecord
     relationships.create(followed_id: user_id)
   end
 
-  def unfollow(use_id)
-    relationships.find_by(followed_id: user_id)
+  def unfollow(user_id)
+    relationships.find_by(followed_id: user_id).destroy
   end
 
   def following?(user)
-    followings.includes?(user)
+    followings.include?(user)
+  end
+end
